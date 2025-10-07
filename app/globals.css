@@ -1,0 +1,469 @@
+
+/* =========================
+   Pure CSS globals (no Tailwind)
+   Preserves all original class names + responsiveness + dark mode
+   ========================= */
+
+/* -------------------------
+   CSS variables (palette & tokens)
+   ------------------------- */
+:root {
+  /* fonts (assumes you load Inter and IBM Plex Serif elsewhere, e.g. next/font or <link>) */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+
+  /* Colors (kept from your tailwind config) */
+  --color-bank-gradient-start: #0179FE;
+  --color-bank-gradient-end: #4893FF;
+  --color-bankGradient: #0179FE;
+  --color-blue-25: #F5FAFF;
+  --color-blue-100: #D1E9FF;
+  --color-blue-500: #2E90FA;
+  --color-blue-600: #1570EF;
+  --color-blue-700: #175CD3;
+  --color-blue-900: #194185;
+  --color-sky-1: #F3F9FF;
+  --color-black-1: #00214F;
+  --color-black-2: #344054;
+  --color-gray-25: #FCFCFD;
+  --color-gray-200: #EAECF0;
+  --color-gray-300: #D0D5DD;
+  --color-gray-500: #667085;
+  --color-gray-600: #475467;
+  --color-gray-700: #344054;
+  --color-gray-900: #101828;
+  --color-success-25: #F6FEF9;
+  --color-success-50: #ECFDF3;
+  --color-success-100: #D1FADF;
+
+  /* Shadows */
+  --shadow-form: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --shadow-chart: 0px 1px 3px 0px rgba(16, 24, 40, 0.10), 0px 1px 2px 0px rgba(16, 24, 40, 0.06);
+  --shadow-profile: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+  --shadow-creditCard: 8px 10px 16px 0px rgba(0, 0, 0, 0.05);
+
+  /* Radii */
+  --r-sm: 0.375rem;  /* rounded-md */
+  --r-md: 0.5rem;    /* rounded-lg */
+  --r-xl: 1rem;      /* rounded-xl */
+}
+
+/* Dark-mode variable overrides (class-based) */
+.dark {
+  /* if you want different colors for dark mode, override here.
+     Example:
+     --color-gray-25: #0b1220;
+  */
+}
+
+/* -------------------------
+   Base/global resets
+   ------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #__next {
+  height: 100%;
+  font-family: var(--font-sans);
+  color: var(--color-gray-900);
+  background: white;
+}
+
+/* -------------------------
+   Utility / helper classes that were referenced in file
+   (size-*, basic layout helpers)
+   ------------------------- */
+.size-full { width: 100%; height: 100%; }
+.size-24 { width: 6rem; height: 6rem; } /* 96px */
+.size-10 { width: 2.5rem; height: 2.5rem; } /* 40px */
+.size-5  { width: 1.25rem; height: 1.25rem; } /* 20px */
+
+.flex { display: flex; }
+.flex-center { display:flex; align-items:center; justify-content:center; }
+.truncate { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.w-full { width:100%; }
+
+/* -------------------------
+   Scrollbar helpers
+   ------------------------- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.custom-scrollbar::-webkit-scrollbar { width: 3px; height: 3px; border-radius: 2px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #dddddd; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #5c5c7b; border-radius: 50px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #7878a3; }
+
+/* -------------------------
+   Glassmorphism
+   ------------------------- */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* -------------------------
+   Gradients & bank background helpers
+   ------------------------- */
+.bg-bank-gradient,
+.bank-gradient {
+  background: linear-gradient(90deg, var(--color-bank-gradient-start) 0%, var(--color-bank-gradient-end) 100%);
+}
+
+.bg-gradient-mesh { background-image: url('/icons/gradient-mesh.svg'); background-size: cover; background-repeat: no-repeat; }
+
+/* -------------------------
+   Shadows (name parity)
+   ------------------------- */
+.shadow-form { box-shadow: var(--shadow-form); }
+.shadow-chart { box-shadow: var(--shadow-chart); }
+.shadow-profile { box-shadow: var(--shadow-profile); }
+.shadow-creditCard { box-shadow: var(--shadow-creditCard); }
+
+/* -------------------------
+   Text size utilities (preserved)
+   ------------------------- */
+.text-10 { font-size: 10px; line-height: 14px; }
+.text-12 { font-size: 12px; line-height: 16px; }
+.text-14 { font-size: 14px; line-height: 20px; }
+.text-16 { font-size: 16px; line-height: 24px; }
+.text-18 { font-size: 18px; line-height: 22px; }
+.text-20 { font-size: 20px; line-height: 24px; }
+.text-24 { font-size: 24px; line-height: 30px; }
+.text-26 { font-size: 26px; line-height: 32px; }
+.text-30 { font-size: 30px; line-height: 38px; }
+.text-36 { font-size: 36px; line-height: 44px; }
+
+/* -------------------------
+   Font-weight utilities
+   ------------------------- */
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* -------------------------
+   Small building-block utilities used in the file
+   ------------------------- */
+.header-2 { font-size: 18px; font-weight: 600; color: var(--color-gray-900); }
+
+/* -------------------------
+   Input field (was .input-class)
+   ------------------------- */
+.input-class {
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid var(--color-gray-300);
+  color: var(--color-gray-900);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-md); /* 0.5rem */
+}
+.input-class::placeholder { color: #9AA3B2; font-size: 16px; line-height: 24px; }
+
+/* -------------------------
+   Buttons & form elements
+   ------------------------- */
+.view-all-btn {
+  font-size: 14px;
+  padding: 0.625rem 1rem; /* px-4 py-2.5 */
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  color: #374151; /* text-gray-700 */
+  background: transparent;
+  cursor: pointer;
+}
+
+.plaidlink-primary,
+.form-btn {
+  font-size: 16px;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-md);
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, var(--color-bank-gradient-start) 0%, var(--color-bank-gradient-end) 100%);
+  border: 1px solid var(--color-bankGradient);
+  box-shadow: var(--shadow-form);
+  cursor: pointer;
+}
+
+.form-link { font-size: 14px; font-weight: 500; color: var(--color-bankGradient); cursor: pointer; }
+
+/* sheet-content button focus reset */
+.sheet-content button {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* -------------------------
+   Text + padding utility
+   ------------------------- */
+.text14_padding10 { font-size: 14px; padding: 0.625rem 1rem; font-weight: 600; }
+
+/* -------------------------
+   Layouts & components (preserved class names)
+   ------------------------- */
+
+/* Home */
+.home {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+/* responsive behavior for "max-xl" (<= 1279px) */
+@media (max-width: 1279.98px) {
+  .home { max-height: 100vh; overflow-y: auto; }
+}
+
+/* home-content */
+.home-content {
+  display: flex;
+  width: 100%;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2rem; /* gap-8 */
+  padding: 1.25rem; /* px-5 */
+  padding-top: 1.75rem; /* py-7 approx */
+  padding-bottom: 1.75rem;
+}
+@media (min-width: 640px) { /* sm */
+  .home-content { padding-left: 2rem; padding-right: 2rem; } /* sm:px-8 */
+}
+@media (min-width: 1024px) { /* lg */
+  .home-content { padding-top: 3rem; padding-bottom: 3rem; } /* lg:py-12 */
+}
+@media (min-width: 1280px) { /* xl */
+  .home-content { max-height: 100vh; overflow-y: auto; }
+}
+
+/* home-header */
+.home-header { display:flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+
+/* total-balance */
+.total-balance {
+  display:flex;
+  width:100%;
+  align-items:center;
+  gap: 1rem;
+  border-radius: 1rem; /* rounded-xl */
+  border: 1px solid var(--color-gray-200);
+  padding: 1rem;
+  box-shadow: var(--shadow-chart);
+}
+@media (min-width: 640px) { .total-balance { gap: 1.5rem; padding: 1.5rem; } }
+
+/* total-balance-chart */
+.total-balance-chart { display:flex; width:100%; max-width:100px; align-items:center; }
+@media (min-width: 640px) { .total-balance-chart { max-width:120px; } }
+
+/* total-balance labels */
+.total-balance-label { font-size: 14px; font-weight: 500; color: var(--color-gray-600); }
+.total-balance-amount { font-size: 24px; line-height: 30px; font-weight: 600; color: var(--color-gray-900); display:flex; flex:1; }
+
+/* recent-transactions & related */
+.recent-transactions { display:flex; width:100%; flex-direction:column; gap:1.5rem; }
+.recent-transactions-label { font-size: 20px; font-weight: 600; color: var(--color-gray-900); }
+@media (min-width: 768px) { .recent-transactions-label { font-size: 24px; } }
+
+.recent-transactions-tablist { display:flex; width:100%; overflow-x:auto; margin-bottom:2rem; }
+
+/* Right sidebar */
+.right-sidebar {
+  display: none;
+}
+@media (min-width: 1280px) { /* xl */
+  .right-sidebar { display:flex; flex-direction: column; height:100vh; max-height:100vh; border-left:1px solid var(--color-gray-200); width:355px; overflow-y:auto; }
+}
+
+/* profile banner & profile */
+.profile-banner { height:120px; width:100%; background-image: url('/icons/gradient-mesh.svg'); background-size: cover; background-repeat: no-repeat; }
+.profile { display:flex; position:relative; padding-left:1.5rem; padding-right:1.5rem; justify-content: flex-start; }
+@media (max-width: 1279.98px) { .profile { justify-content: center; } }
+
+.profile-img {
+  display:flex; align-items:center; justify-content:center;
+  position:absolute; top:-2rem;
+  width:6rem; height:6rem; border-radius:50%;
+  background: #f3f4f6; /* bg-gray-100 */
+  padding: 0.5rem;
+  box-shadow: var(--shadow-profile);
+  border: 8px solid white;
+}
+.profile-details { display:flex; flex-direction:column; padding-top:6rem; } /* pt-24 approximated */
+.profile-name { font-size: 24px; font-weight: 600; color: var(--color-gray-900); }
+.profile-email { font-size: 16px; font-weight: 400; color: var(--color-gray-600); }
+
+/* banks */
+.banks { display:flex; flex-direction:column; justify-content:space-between; gap:2rem; padding:2rem; }
+
+/* my-banks and transactions */
+.my-banks, .transactions {
+  display:flex; flex-direction:column; gap:2rem; padding:2rem; background: var(--color-gray-25);
+  height: 100vh; max-height:100vh;
+}
+@media (min-width: 1280px) { .my-banks, .transactions { padding-top:3rem; padding-bottom:3rem; } }
+
+/* transactions header & account */
+.transactions-header { display:flex; width:100%; flex-direction:column; gap:2rem; }
+@media (min-width: 768px) { .transactions-header { flex-direction: row; align-items:center; justify-content: space-between; } }
+
+.transactions-account {
+  display:flex; flex-direction: column; justify-content: space-between; gap:1rem;
+  border-top: none; border-bottom: none; background: var(--color-blue-600); padding:1rem;
+  border-radius: var(--r-md);
+}
+@media (min-width: 768px) { .transactions-account { flex-direction: row; } }
+
+.transactions-account-balance {
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;
+  border-radius: var(--r-sm);
+  background: rgba(14, 165, 233, 0.08); /* approximate bg-blue-25/20 */
+  padding: 0.5rem 1rem; color: white;
+}
+
+/* header-box */
+.header-box { display:flex; flex-direction:column; gap:0.25rem; }
+.header-box-title { font-size: 24px; line-height: 30px; font-weight: 600; color: var(--color-gray-900); }
+.header-box-subtext { font-size: 14px; line-height: 20px; font-weight: 400; color: var(--color-gray-600); }
+
+/* bank card */
+.bank-card {
+  position: relative;
+  display:flex;
+  height: 190px;
+  width: 100%;
+  max-width: 320px;
+  justify-content: space-between;
+  border: 1px solid white;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--color-bank-gradient-start) 0%, var(--color-bank-gradient-end) 100%);
+  box-shadow: var(--shadow-creditCard);
+  backdrop-filter: blur(6px);
+}
+.bank-card_content {
+  position: relative;
+  z-index: 10;
+  display:flex;
+  width: 100%;
+  max-width: 228px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  background: rgba(0,0,0,0.4); /* approximate dark overlay */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.bank-card_icon {
+  display:flex;
+  width:100%;
+  flex:1;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:space-between;
+  background-size: cover;
+  background-position: center;
+  padding: 1.25rem 1.25rem 0 0;
+}
+
+/* bank-info */
+.bank-info { display:flex; gap:18px; padding:1rem; transition: all .2s ease; border: 1px solid transparent; background: var(--color-blue-25); }
+
+/* category badge */
+.category-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:0.25rem; border-radius: 9999px; border: 1.5px solid currentColor;
+  padding: 0.125rem 0.375rem;
+}
+
+/* banktab item */
+.banktab-item { display:flex; gap:18px; border-bottom: 2px solid transparent; padding:0.5rem 0.5rem; transition: all .15s ease; }
+
+/* mobile nav sheet */
+.mobilenav-sheet { display:flex; height: calc(100vh - 72px); flex-direction: column; justify-content: space-between; overflow-y:auto; }
+.mobilenav-sheet_close { display:flex; gap:0.75rem; align-items:center; padding:1rem; width:100%; max-width: 15rem; border-radius: var(--r-md); }
+
+/* PlaidLink */
+.plaidlink-primary { font-size:16px; border-radius: var(--r-md); border:1px solid var(--color-bankGradient); background: linear-gradient(90deg, var(--color-bank-gradient-start) 0%, var(--color-bank-gradient-end) 100%); color:#fff; padding:0.5rem 0.75rem; font-weight:600; box-shadow: var(--shadow-form); }
+.plaidlink-ghost { display:flex; cursor: pointer; align-items:center; justify-content:center; gap:0.75rem; border-radius: var(--r-md); padding:0.75rem; }
+.plaidlink-default { display:flex; justify-content:flex-start; cursor:pointer; gap:0.75rem; background: transparent; }
+
+/* auth */
+.auth-asset { display:flex; height:100vh; width:100%; position:sticky; top:0; align-items:center; justify-content:flex-end; background: var(--color-sky-1); }
+@media (max-width: 1023.98px) { /* max-lg = <= 1023.98 */
+  .auth-asset { display:none; }
+}
+
+/* auth form */
+.auth-form { display:flex; min-height:100vh; width:100%; max-width:420px; flex-direction:column; justify-content:center; gap:1.25rem; padding-top:2.5rem; padding-bottom:2.5rem; }
+
+/* form items */
+.form-item { display:flex; flex-direction:column; gap:0.375rem; }
+.form-label { font-size:14px; max-width:280px; font-weight:500; color: var(--color-gray-700); }
+.form-message { font-size:12px; color: #ef4444; } /* red-500 */
+
+/* payment transfer */
+.payment-transfer { display:flex; flex-direction:column; gap:2rem; overflow-y:auto; background: var(--color-gray-25); padding:2rem; }
+.payment-transfer_form-item { display:flex; width:100%; max-width:850px; flex-direction:column; gap:0.75rem; }
+@media (min-width: 768px) { .payment-transfer_form-item { flex-direction: row; gap:2rem; } }
+.payment-transfer_form-content { display:flex; width:100%; max-width:280px; flex-direction:column; gap:0.5rem; }
+.payment-transfer_form-details { display:flex; flex-direction:column; gap:0.25rem; border-top:1px solid var(--color-gray-200); padding-top:1.25rem; padding-bottom:1.25rem; }
+.payment-transfer_btn-box { margin-top:1.25rem; display:flex; width:100%; max-width:850px; gap:0.75rem; border-top:1px solid var(--color-gray-200); padding-top:1.25rem; }
+.payment-transfer_btn { font-size:14px; width:100%; background: linear-gradient(90deg, var(--color-bank-gradient-start) 0%, var(--color-bank-gradient-end) 100%); color:white; font-weight:600; padding:0.5rem; border-radius: var(--r-md); box-shadow: var(--shadow-form); }
+
+/* root-layout */
+.root-layout { display:flex; height:4rem; align-items:center; justify-content:space-between; padding:1.25rem; box-shadow: var(--shadow-creditCard); }
+@media (min-width: 640px) { .root-layout { padding:2rem; } }
+@media (min-width: 768px) { .root-layout { display:none; } } /* md:hidden in origin */
+
+/* footer */
+.footer { display:flex; cursor:pointer; align-items:center; justify-content:space-between; gap:0.5rem; padding-top:1.5rem; padding-bottom:1.5rem; }
+.footer_name { display:flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; border-radius:50%; background:var(--color-gray-200); }
+.footer_email { display:flex; flex-direction:column; justify-content:center; }
+.footer_name-mobile { display:flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; border-radius:50%; background:var(--color-gray-200); }
+.footer_email-mobile { display:flex; flex-direction:column; justify-content:center; }
+.footer_image { position:relative; width:1.25rem; height:1.25rem; }
+
+/* sidebar */
+.sidebar {
+  position: sticky;
+  left: 0; top: 0;
+  display:flex; flex-direction:column; justify-content:space-between;
+  height: 100vh; width: fit-content;
+  border-right: 1px solid var(--color-gray-200);
+  background: white; padding-top:2rem;
+}
+@media (max-width: 767.98px) { .sidebar { display:none; } } /* max-md hidden */
+@media (min-width: 1536px) { .sidebar { width: 355px; } } /* 2xl */
+
+.sidebar-logo { font-family: var(--font-serif); font-size: 26px; font-weight: 700; color: var(--color-black-1); display:none; }
+@media (min-width: 1280px) { .sidebar-logo { display:block; } }
+
+.sidebar-link { display:flex; gap:0.75rem; align-items:center; padding:0.25rem 0.75rem; border-radius: var(--r-md); justify-content:center; }
+@media (min-width: 1280px) { .sidebar-link { justify-content: flex-start; } }
+
+.sidebar-label { font-size: 16px; font-weight:600; color: var(--color-black-2); display:none; }
+@media (max-width: 1279.98px) { .sidebar-label { display:none; } }
+@media (min-width: 1280px) { .sidebar-label { display:block; } }
+
+/* -------------------------
+   Small helpers used above
+   ------------------------- */
+.border-gray-200 { border-color: var(--color-gray-200); }
+.bg-blue-25 { background: var(--color-blue-25); }
+
+/* -------------------------
+   Accessibility / focus
+   ------------------------- */
+:focus { outline: 2px solid rgba(0,0,0,0.06); outline-offset: 2px; }
+button:focus { outline: none; box-shadow: 0 0 0 3px rgba(1, 126, 255, 0.15); }
+
+/* -------------------------
+   Keep file open for future edits
+   - All colors are in :root variables (easy to edit)
+   - All radii/shadows are variables
+   ------------------------- */
